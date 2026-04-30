@@ -1,2 +1,5 @@
 data_images/*
 data_html/*
+processed_images_pc/*
+processed_images_pipe/*
+processed_images_seq/*

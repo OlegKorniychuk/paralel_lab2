@@ -140,6 +140,8 @@ func main() {
 	matrix2 := GenerateLargeMatrix(matrixRows, matrixColumns, r)
 	array := GenerateLargeArray(arrayLength, r)
 
+	// Task 1
+
 	fmt.Println("Running Sequential...")
 	seqRes := runSequential(htmlDir, array, matrix1, matrix2)
 	printTimings(seqRes, "Sequential")
@@ -158,4 +160,19 @@ func main() {
 	wpRes := runWorkersPool(htmlDir, array, matrix1, matrix2)
 	printTimings(wpRes, "Workers Pool")
 	compareResults(seqRes, wpRes, "Workers Pool")
+
+	// Task 2
+	imageInputDir := "data_images"
+	
+	fmt.Printf("\n=== Task 2: Image Processing (Sequential) ===\n")
+	durationSeq := processImagesSequential(imageInputDir, "processed_images_seq")
+	fmt.Printf("Execution time: %v\n", durationSeq)
+
+	fmt.Printf("\n=== Task 2: Image Processing (Pipeline) ===\n")
+	durationPipe := processImagesPipeline(imageInputDir, "processed_images_pipe")
+	fmt.Printf("Execution time: %v\n", durationPipe)
+
+	fmt.Printf("\n=== Task 2: Image Processing (Producer-Consumer) ===\n")
+	durationPC := processImagesProdCons(imageInputDir, "processed_images_pc")
+	fmt.Printf("Execution time: %v\n", durationPC)
 }
